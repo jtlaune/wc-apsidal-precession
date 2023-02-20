@@ -1,4 +1,5 @@
 \documentclass[usenatbib,twocolumn]{mnras}
+\usepackage{cuted}
 %\linespread{2.0}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -40,6 +41,7 @@
 
 \begin{document}
 \maketitle
+
 \section{Introduction}
     Planets have long been expected to migrate in their natal protoplanetary disks \citep[PPDs; e.g.][]{nelson00_migrat_growt_protop_protos_discs}.
 
@@ -50,24 +52,29 @@ The \emph{Coplanar Eccentric Restricted 3-Body Problem} (CER3BP) is the problem 
 \subsection{Hamiltonian and Equations of Motion}
 The non-dissipative problem for a $j+1:j$ resonance is a non-autonomous dimensionless Hamiltonian with two degrees of freedom,
 \begin{align}
-    \sqrt{a} &\longleftrightarrow \lambda\\
+    \sqrt{a} &\longleftrightarrow \lambda,\\
     \sqrt{a}(1-\sqrt{1-e^2})\simeq \frac12\sqrt{a}e^2&\longleftrightarrow -\varpi.
 \end{align}
 The Hamiltonian of the system is 
 \begin{align}
     \label{eq:TPH}
-    \mathcal H=-&\frac{GM}{2a}\nonumber\\
-    +\frac{GMm_p}{a_p}&\left\{
-        f_1(a,a_p)e\cos((j+1)n_p(a_p)t-j\lambda-\varpi)\right.\\
-        &\left. +f_2(a,a_p)e_p\cos((j+1)n_p(a_p)t-j\lambda-\varpi_p)
-    \right\}\nonumber
+    \mathcal H=&-\frac{GM}{2a}
+    +\frac{GMm_p}{a_p}\left\{
+        f_1e\cos((j+1)n_p(a_p)t-j\lambda-\varpi)\right.\\
+        &\left. +f_2e_p\cos((j+1)n_p(a_p)t-j\lambda-\varpi_p)
+    \right\}.\nonumber
+\end{align}
+The resonant arguments are 
+\begin{align}
+    \theta=(j+1)n_pt -j\lambda-\varpi,\\
+    \theta_p=(j+1)n_pt -j\lambda-\varpi_p.
 \end{align}
 
-\subsection{Effects of apsidal precession}
+\subsection{Constant Apsidal Precession}
 \label{sec:}
-We add the term $H_{\pi} = -\pi\Gamma\simeq = -\pi\left(\frac12\sqrt{\alpha}e^2\right)$ to the Hamiltonian \ref{eq:TPH}, which induces the precession term
+We add the term $-\pi\Gamma\simeq = -\pi\left(\frac12\sqrt{\alpha}e^2\right)$ to the Hamiltonian \ref{eq:TPH}, which induces the precession term
 \begin{equation}
-    \left(\frac{d\varpi}{dt}\right)_{\rm ext} = \pi
+    \left(\frac{d\varpi}{dt}\right)_{\rm ext} = \pi.
 \end{equation}
 
 \section{Coplanar Comparable Mass Problem}
@@ -76,23 +83,114 @@ The \emph{Coplanar Comparable Mass Problem} (CCMP) is the problem of two coplana
 \subsection{Hamiltonian and Equations of Motion}
 The non-dissipative problem for a $j:j+1$ resonance is an autonomous dimensionless Hamiltonian with 4 degrees of freedom,
 \begin{align}
-    \sqrt{a_1}&\leftrightarrow \lambda_1\\
-    \sqrt{a_1}(1-\sqrt{1-e_1^2})\simeq\frac12\sqrt{a_1}e_1^2&\leftrightarrow -\varpi_1\\
-    \sqrt{a_2}&\leftrightarrow \lambda_2\\
-    \sqrt{a_2}(1-\sqrt{1-e_2^2})\simeq\frac12\sqrt{a_2}e_2^2&\leftrightarrow -\varpi_2
+    \sqrt{a_1}&\leftrightarrow \lambda_1,\\
+    \sqrt{a_1}(1-\sqrt{1-e_1^2})\simeq\frac12\sqrt{a_1}e_1^2&\leftrightarrow -\varpi_1,\\
+    \sqrt{a_2}&\leftrightarrow \lambda_2,\\
+    \sqrt{a_2}(1-\sqrt{1-e_2^2})\simeq\frac12\sqrt{a_2}e_2^2&\leftrightarrow -\varpi_2,
 \end{align}
 The Hamiltonian of the system is
 \begin{align}
+    \label{eq:CCMP_H}
     \mathcal H=
     &- \frac{G M m_{2}}{2 a_{2}} - \frac{G M m_{2} q}{2 a_{1}} \\
     &- \frac{G m_{2}^{2} q}{a_{2}} \left(e_{1} f_{1} \cos{\theta_1} + e_{2} f_{2} \cos{\theta_2}\right) \\
     &- \frac{G m_{2}^{2} q \left(e_{1} e_{2} f_{4} \cos{\left(g_{1} - g_{2} \right)} + f_{3} \left(e_{1}^{2} + e_{2}^{2}\right)\right)}{a_{2}},
 \end{align}
-where now there are two resonant arguments
+where the two resonant arguments are
 \begin{align}
     \theta_1 &=\lambda_{2} \left(j + 1\right) - j \lambda_{1}-\varpi_{1}, \\
     \theta_2 &= \lambda_{2} \left(j + 1\right)- j \lambda_{1}-\varpi_{2}.
 \end{align}
+We now switch to dimensionless units by scaling the masses by $M$,
+\begin{align}
+    m_1 = \mu_1 M,\\
+    m_2 = \mu_2 M,
+\end{align}
+the SMAs by $a_0$,
+\begin{align}
+    a_1 &= \bar a_1a_0,\\
+    a_2 &= \bar a_2a_0,
+\end{align}
+the time by $n_0^{-1} = \sqrt{a_0^{3}/GM}$,
+\begin{align}
+    t &= \tau/n_0,
+\end{align}
+and the Hamiltonian by,
+\begin{align}
+    \mathcal H = \bar{\mathcal{H}} \left(\frac{GMm_2(1+q)}{a_2}\right).
+\end{align}
+The angular angular momenta are therefore in the units
+\begin{align}
+    \Lambda_1 = \bar\Lambda_1 \mu_2(1+q)\sqrt{GMa_{0}}.
+\end{align}
+From here on out all coordinates and momenta will be assumed to be dimensionless and we will drop the bars.
+We will use nominal values of $a_0=1~\mathrm{au}$ and $M=1~M_\odot$ so that time is in years and $\tau=2\pi t$.
+
+From Hamilton's equations, the equations of motion are
+\onecolumn
+\begin{align}
+    \frac{d}{d\tau} \lambda_1 =& \frac{q}{a_{1}^{\frac{3}{2}}} + \frac{1}{a_{1}^{\frac{3}{2}}}
+    \frac{e_{1}^{2} f_{3} \mu_{2} q}{\sqrt{a_{1}} a_{2}} + \frac{e_{1}^{2} f_{3} \mu_{2}}{\sqrt{a_{1}} a_{2}} + \frac{e_{1} e_{2} f_{4} \mu_{2} q \cos{\left(\theta_{1} - \theta_{2} \right)}}{2 \sqrt{a_{1}} a_{2}} + \frac{e_{1} e_{2} f_{4} \mu_{2} \cos{\left(\theta_{1} - \theta_{2} \right)}}{2 \sqrt{a_{1}} a_{2}} + \frac{e_{1} f_{1} \mu_{2} q \cos{\left(\theta_{1} \right)}}{2 \sqrt{a_{1}} a_{2}} + \frac{e_{1} f_{1} \mu_{2} \cos{\left(\theta_{1} \right)}}{2 \sqrt{a_{1}} a_{2}},\\
+    \frac{d}{d\tau} \Lambda_1 =&\frac{e_{1} f_{1} j \mu_{2} q \sin{\left(\theta_{1} \right)}}{a_{2}} + \frac{e_{2} f_{2} j \mu_{2} q \sin{\left(\theta_{2} \right)}}{a_{2}}, \\
+    \frac{d}{d\tau} \lambda_2 =& \frac{q}{a_{2}^{\frac{3}{2}}} + \frac{1}{a_{2}^{\frac{3}{2}}}
+    \frac{2 e_{1}^{2} f_{3} \mu_{2} q^{2}}{a_{2}^{\frac{3}{2}}} + \frac{2 e_{1}^{2} f_{3} \mu_{2} q}{a_{2}^{\frac{3}{2}}} + \frac{5 e_{1} e_{2} f_{4} \mu_{2} q^{2} \cos{\left(\theta_{1} - \theta_{2} \right)}}{2 a_{2}^{\frac{3}{2}}} + \frac{5 e_{1} e_{2} f_{4} \mu_{2} q \cos{\left(\theta_{1} - \theta_{2} \right)}}{2 a_{2}^{\frac{3}{2}}} \nonumber\\
+    &+ \frac{2 e_{1} f_{1} \mu_{2} q^{2} \cos{\left(\theta_{1} \right)}}{a_{2}^{\frac{3}{2}}} + \frac{2 e_{1} f_{1} \mu_{2} q \cos{\left(\theta_{1} \right)}}{a_{2}^{\frac{3}{2}}} + \frac{3 e_{2}^{2} f_{3} \mu_{2} q^{2}}{a_{2}^{\frac{3}{2}}} + \frac{3 e_{2}^{2} f_{3} \mu_{2} q}{a_{2}^{\frac{3}{2}}} + \frac{5 e_{2} f_{2} \mu_{2} q^{2} \cos{\left(\theta_{2} \right)}}{2 a_{2}^{\frac{3}{2}}} + \frac{5 e_{2} f_{2} \mu_{2} q \cos{\left(\theta_{2} \right)}}{2 a_{2}^{\frac{3}{2}}},  \\
+    \frac{d}{d\tau} \Lambda_2 =&- \frac{e_{1} f_{1} j \mu_{2} q \sin{\left(\theta_{1} \right)}}{a_{2}} - \frac{e_{1} f_{1} \mu_{2} q \sin{\left(\theta_{1} \right)}}{a_{2}} - \frac{e_{2} f_{2} j \mu_{2} q \sin{\left(\theta_{2} \right)}}{a_{2}} - \frac{e_{2} f_{2} \mu_{2} q \sin{\left(\theta_{2} \right)}}{a_{2}}, \\
+    \frac{d}{d\tau} \gamma_1 =&- \frac{2 f_{3} \mu_{2} q}{\sqrt{a_{1}} a_{2}} - \frac{2 f_{3} \mu_{2}}{\sqrt{a_{1}} a_{2}} - \frac{e_{2} f_{4} \mu_{2} q \cos{\left(\theta_{1} - \theta_{2} \right)}}{\sqrt{a_{1}} a_{2} e_{1}} - \frac{e_{2} f_{4} \mu_{2} \cos{\left(\theta_{1} - \theta_{2} \right)}}{\sqrt{a_{1}} a_{2} e_{1}} - \frac{f_{1} \mu_{2} q \cos{\left(\theta_{1} \right)}}{\sqrt{a_{1}} a_{2} e_{1}} - \frac{f_{1} \mu_{2} \cos{\left(\theta_{1} \right)}}{\sqrt{a_{1}} a_{2} e_{1}}, \\
+    \frac{d}{d\tau} \Gamma_1 =&- \frac{e_{1} e_{2} f_{4} \mu_{2} q \sin{\left(\theta_{1} - \theta_{2} \right)}}{a_{2}} - \frac{e_{1} f_{1} \mu_{2} q \sin{\left(\theta_{1} \right)}}{a_{2}},\\
+    \frac{d}{d\tau} \gamma_2 =&- \frac{e_{1} f_{4} \mu_{2} q^{2} \cos{\left(\theta_{1} - \theta_{2} \right)}}{a_{2}^{\frac{3}{2}} e_{2}} - \frac{e_{1} f_{4} \mu_{2} q \cos{\left(\theta_{1} - \theta_{2} \right)}}{a_{2}^{\frac{3}{2}} e_{2}} - \frac{2 f_{3} \mu_{2} q^{2}}{a_{2}^{\frac{3}{2}}} - \frac{2 f_{3} \mu_{2} q}{a_{2}^{\frac{3}{2}}} - \frac{f_{2} \mu_{2} q^{2} \cos{\left(\theta_{2} \right)}}{a_{2}^{\frac{3}{2}} e_{2}} - \frac{f_{2} \mu_{2} q \cos{\left(\theta_{2} \right)}}{a_{2}^{\frac{3}{2}} e_{2}}, \\
+    \frac{d}{d\tau} \Gamma_2 =&\frac{e_{1} e_{2} f_{4} \mu_{2} q \sin{\left(\theta_{1} - \theta_{2} \right)}}{a_{2}} - \frac{e_{2} f_{2} \mu_{2} q \sin{\left(\theta_{2} \right)}}{a_{2}} .
+\end{align}
+\twocolumn
+
+\subsection{Dissipation}\label{sec:cm-dis}
+We add dissipation to the system as
+\begin{align}
+ \frac{d}{d\tau} a_1&=- \frac{a_{1}}{(2\pi T_{m,1})} - \frac{2 a_{1} e_{1}^{2}}{(2\pi T_{e,1})},\\
+ \frac{d}{d\tau} a_2&=- \frac{a_{2}}{(2\pi T_{m,2})} - \frac{2 a_{2} e_{2}^{2}}{(2\pi T_{e,2})},\\
+ \frac{d}{d\tau} e_1&=- \frac{e_{1}}{(2\pi T_{e,1})},\\
+ \frac{d}{d\tau} e_2&=- \frac{e_{2}}{(2\pi T_{e,2})}.
+\end{align}
+For $q<1$, we choose $T_{m,2}=2\times10^7$, $T_{m,1}=\infty$, $T_{e,1}=1\times10^5$, and $T_{e,2}=qT_{e,1}$.
+For $q>1$, we choose $T_{m,1}=-2\times10^7$, $T_{m,2}=\infty$, $T_{e,2}=1\times10^5$, and $T_{e,1}=T_{e,1}/q$.
+This is equivalent to a disk aspect ratio of $h\sim 0.027$.
+
+A typical capture scenario for is demonstrated in Figure~\ref{fig:cm-control}.
+
+\begin{figure}
+    \includegraphics[width=0.4\textwidth]{cm_0_0.png}
+\caption{Mean motion resonance capture for $m_1=1~M_\oplus$ and $m_2=2~M_\oplus$. The dissipative timescales are given in Section \ref{sec:cm-dis}. The two planets are initiated just wide of resonance at a period ratio of $P_2/P_1=1.55$. After around 0.5~Myr, the planets cross the 2:3 MMR and are captured, indicated by the tight libration of $\theta_1$ and $\theta_2$. The periapses transition from being aligned ($\Delta\varpi=\varpi_1-\varpi_2=0^\circ$) to anti-aligned ($\Delta\varpi=\varpi_1-\varpi_2=180^\circ$).}
+    \label{fig:cm-control}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=0.4\textwidth]{cm_1e-4_2e-4.png}
+    \caption{The same as Figure~\ref{fig:cm-control} but with $\pi_1=10^{-4}$ and $\pi_2=2\times10^{-4}$ ($\Delta\dot\varpi=\pi_1-\pi_2=-10^{-4}>0$). After around 4.5~Myr, $\theta_2$ begins circulating and eccentricities increase to orbit-crossing values (resulting in instability).}
+    \label{fig:cm-neg-dDpom}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=0.4\textwidth]{cm_2e-4_1e-4.png}
+    \caption{The same as Figure~\ref{fig:cm-control} but with $\pi_1=2\times10^{-4}$ and $\pi_2=10^{-4}$ ($\Delta\dot\varpi=\pi_1-\pi_2=10^{-4}>0$). After capture, $\theta_1$ and $\theta_2$ continue to librate but $e_2$ increases to orbit-crossing values (resulting in instability).
+    }
+    \label{fig:cm-pos-dDpom}
+\end{figure}
+
+\subsection{Constant Apsidal Precession}
+We add the terms $-\Gamma_1\pi_1-\Gamma_2\pi_2$ to the Hamiltonian (\ref{eq:CCMP_H}) to induce apsidal precession at the constant angular frequencies $\pi_1,\pi_2$ on $\varpi_1,\varpi_2$, respectively. In particular, the following terms are added to the equations of motion,
+\begin{align}
+    \frac{d}{d\tau} \varpi_1 = \pi_1, \\
+    \frac{d}{d\tau} \varpi_1 = \pi_2.
+\end{align}
+
+\subsubsection{$\pi_1-\pi_2<0$}
+See Figure~\ref{fig:cm-neg-dDpom}.
+
+\subsubsection{$\pi_1-\pi_2>0$}
+See Figure~\ref{fig:cm-pos-dDpom}.
+
+
+
 
 
 
@@ -123,7 +221,5 @@ and, by Hamilton's equations,
    \dot X &= \frac{\sqrt{2} f_{1} \mu \sqrt{\frac{\sqrt{X^{2} + Y^{2}}}{\Theta_{0} j}} \left(2 X \sin{\left(\theta_{0} - \operatorname{atan}_{2}{\left(Y,X \right)} \right)} + Y \cos{\left(\theta_{0} - \operatorname{atan}_{2}{\left(Y,X \right)} \right)}\right)}{2 \left(X^{2} + Y^{2}\right)} \\
    \dot Y &= \frac{\sqrt{2} f_{1} \mu \sqrt{\frac{\sqrt{X^{2} + Y^{2}}}{\Theta_{0} j}} \left(- X \cos{\left(\theta_{0} - \operatorname{atan}_{2}{\left(Y,X \right)} \right)} + 2 Y \sin{\left(\theta_{0} - \operatorname{atan}_{2}{\left(Y,X \right)} \right)}\right)}{2 \left(X^{2} + Y^{2}\right)}
 \end{align}
-
-\section{Comparable Mass Problem}
 
 \end{document}
