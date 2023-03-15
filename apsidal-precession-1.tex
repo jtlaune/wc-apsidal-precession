@@ -71,8 +71,8 @@ The Hamiltonian of the system is
     \label{eq:TPH}
     \mathcal H=&-\frac{GM}{2a}
     +\frac{GMm_p}{a_p}\left\{
-        f_1e\cos((j+1)n_p(a_p)t-j\lambda-\varpi)\right.\\
-        &\left. +f_2e_p\cos((j+1)n_p(a_p)t-j\lambda-\varpi_p)
+        f_1e\cos((j+1)\tau-j\lambda-\varpi)\right.\\
+        &\left. +f_2e_p\cos((j+1)\tau-j\lambda-\varpi_p)
     \right\}.\nonumber
 \end{align}
 The resonant arguments are 
@@ -85,31 +85,31 @@ where $\tau=n_p t$ is the dimensionless time. For a nominal choice of $a_p=1~\rm
 \subsection{Dissipation}
 We add dissipation to the system as
 \begin{align}
- \frac{d}{d\tau} a&=- \frac{a}{(2\pi T_{m})} - \frac{2 a e^{2}}{(2\pi T_{e})},\\
- \frac{d}{d\tau} e&=- \frac{e}{(2\pi T_{e})},\\
+ \frac{da}{dt}&=- \frac{a}{T_{m}} - \frac{2 a e^{2}}{T_{e}},\\
+ \frac{de}{dt}&=- \frac{e}{T_{e}},\\
 \end{align}
 where $T_e$ and $T_m$ are the test particle's eccentricity- and SMA-damping timescales, respectively. Since the test particle is inside the orbit of $m_p$, we set $T_m<0$ and let the test particle migrate outwards.
 
 
 \subsection{Constant Apsidal Precession}
 \label{sec:}
-We add the term $-\pi\Gamma\simeq = -\pi\left(\frac12\sqrt{\alpha}e^2\right)$ to the Hamiltonian \ref{eq:TPH}, which induces the precession term
+We add the term $-\omega\Gamma\simeq = -\omega\left(\frac12\sqrt{\alpha}e^2\right)$ to the Hamiltonian \ref{eq:TPH}, which induces the precession term
 \begin{equation}
-    \left(\frac{d\varpi}{d\tau}\right)_{\rm ext} = \pi.
+    \left(\frac{d\varpi}{dt}\right)_{\rm ext} = \frac{\omega}{2\pi}.
 \end{equation}
 
 \subsection{Reducing the Hamiltonian}
 Through a series of canonical transformations and approximations, the Hamiltonian \ref{eq:TPH} (including the apsidal precession terms) can be reduced to 
 \begin{align}
-    \mathcal H(M,R) \simeq& - \frac{3 M^{2} j^{\frac{2}{3}} \left(j + 1\right)^{\frac{4}{3}}}{2} + \frac{M \pi_{2}}{\mu^{\frac{2}{3}}} 
-    - \frac{R \left( \pi_{1} - \pi_{2}\right)}{\mu^{\frac{2}{3}}}
+    \mathcal H(M,R) \simeq& - \frac{3 M^{2} j^{\frac{2}{3}} \left(j + 1\right)^{\frac{4}{3}}}{2} + \frac{M \omega_{{e}2}}{\mu^{\frac{2}{3}}} 
+    - \frac{R \left( \omega_{{e}1} - \omega_{{e}2}\right)}{\mu^{\frac{2}{3}}}
     \nonumber\\
     &+ \sqrt{2} \sqrt{R} \left(f_{1} \cos{\left(m + r \right)}
-        +\frac{e_{p} f_{2} \left(\pi_{1} - \pi_{2}\right) \cos{\left(r \right)}}{f_{1} \mu}\right)
+        +\frac{e_{p} f_{2} \left(\omega_{{e}1} - \omega_{{e}2}\right) \cos{\left(r \right)}}{f_{1} \mu}\right)
 \end{align}
 where the new canonical momentum-coordinate pairs are
 \begin{align}
-    R =& \frac{\sqrt{\alpha} e^{2} f_{1}^{2} - 2 \sqrt[4]{\alpha} e e_{p} f_{1} f_{2} \cos{\left(\pi_{2} \tau - \varpi \right)} + e_{p}^{2} f_{2}^{2}}{2 f_{1}^{2} \mu^{\frac{2}{3}}}\\
+    R =& \frac{\sqrt{\alpha} e^{2} f_{1}^{2} - 2 \sqrt[4]{\alpha} e e_{p} f_{1} f_{2} \cos{\left(\omega_{{e}2} \tau - \varpi \right)} + e_{p}^{2} f_{2}^{2}}{2 f_{1}^{2} \mu^{\frac{2}{3}}}\\
     &\leftrightarrow r = \mathrm{atan}\frac{e \sin{\left(g_{1} \right)}}{ \frac{e_{p} f_{2}}{f_{1} \sqrt[4]{a}}- e \cos{\left(g_{1} \right)}},\\
     M=&\frac{\sqrt{\alpha}- (j/(j+1))^{1/3} }{j \mu^{\frac{2}{3}}}
     \leftrightarrow m =  j l - \tau \left(j + 1\right),
@@ -170,10 +170,10 @@ We then derive the equations of motion of the system from Hamilton's equations. 
 \subsection{Dissipation}\label{sec:cm-dis}
 We add dissipation to the system as
 \begin{align}
- \frac{d}{d\tau} a_1&=- \frac{a_{1}}{(2\pi T_{m,1})} - \frac{2 a_{1} e_{1}^{2}}{(2\pi T_{e,1})},\\
- \frac{d}{d\tau} a_2&=- \frac{a_{2}}{(2\pi T_{m,2})} - \frac{2 a_{2} e_{2}^{2}}{(2\pi T_{e,2})},\\
- \frac{d}{d\tau} e_1&=- \frac{e_{1}}{(2\pi T_{e,1})},\\
- \frac{d}{d\tau} e_2&=- \frac{e_{2}}{(2\pi T_{e,2})}.
+ \frac{da_1}{dt} &=- \frac{a_{1}}{T_{m,1}} - \frac{2 a_{1} e_{1}^{2}}{T_{e,1}},\\
+ \frac{da_2}{dt} &=- \frac{a_{2}}{T_{m,2}} - \frac{2 a_{2} e_{2}^{2}}{T_{e,2}},\\
+ \frac{de_1}{dt} &=- \frac{e_{1}}{T_{e,1}},\\
+ \frac{de_2}{dt} &=- \frac{e_{2}}{T_{e,2}}.
 \end{align}
 For $q<1$, we choose $T_{m,2}=2\times10^7$, $T_{m,1}=\infty$, $T_{e,1}=1\times10^5$, and $T_{e,2}=qT_{e,1}$.
 For $q>1$, we choose $T_{m,1}=-2\times10^7$, $T_{m,2}=\infty$, $T_{e,2}=1\times10^5$, and $T_{e,1}=T_{e,1}/q$.
@@ -189,28 +189,28 @@ A typical capture scenario for is demonstrated in Figure~\ref{fig:cm-control}.
 
 \begin{figure}
     \includegraphics[width=0.4\textwidth]{cm_1e-4_2e-4.png}
-    \caption{The same as Figure~\ref{fig:cm-control} but with $\pi_1=10^{-4}$ and $\pi_2=2\times10^{-4}$ ($\Delta\dot\varpi=\pi_1-\pi_2=-10^{-4}>0$). After around 4.5~Myr, $\theta_2$ begins circulating and eccentricities increase to orbit-crossing values (resulting in instability).}
+    \caption{The same as Figure~\ref{fig:cm-control} but with $\omega_{1e}=10^{-4}$ and $\omega_{2e}=2\times10^{-4}$ ($\Delta\dot\varpi=\omega_{1e}-\omega_{2e}=-10^{-4}>0$). After around 4.5~Myr, $\theta_2$ begins circulating and eccentricities increase to orbit-crossing values (resulting in instability).}
     \label{fig:cm-neg-dDpom}
 \end{figure}
 
 \begin{figure}
     \includegraphics[width=0.4\textwidth]{cm_2e-4_1e-4.png}
-    \caption{The same as Figure~\ref{fig:cm-control} but with $\pi_1=2\times10^{-4}$ and $\pi_2=10^{-4}$ ($\Delta\dot\varpi=\pi_1-\pi_2=10^{-4}>0$). After capture, $\theta_1$ and $\theta_2$ continue to librate but $e_2$ increases to orbit-crossing values (resulting in instability).
+    \caption{The same as Figure~\ref{fig:cm-control} but with $\omega_{1e}=2\times10^{-4}$ and $\omega_{2e}=10^{-4}$ ($\Delta\dot\varpi=\omega_{1e}-\omega_{2e}=10^{-4}>0$). After capture, $\theta_1$ and $\theta_2$ continue to librate but $e_2$ increases to orbit-crossing values (resulting in instability).
     }
     \label{fig:cm-pos-dDpom}
 \end{figure}
 
 \subsection{Constant Apsidal Precession}
-We add the terms $-\Gamma_1\pi_1-\Gamma_2\pi_2$ to the Hamiltonian (\ref{eq:CCMP_H}) to induce apsidal precession at the constant angular frequencies $\pi_1,\pi_2$ on $\varpi_1,\varpi_2$, respectively. In particular, the following terms are added to the equations of motion,
+We add the terms $-\Gamma_1\omega_{1e}-\Gamma_2\omega_{2e}$ to the Hamiltonian (\ref{eq:CCMP_H}) to induce apsidal precession at the constant angular frequencies $\omega_{1e},\omega_{2e}$ on $\varpi_1,\varpi_2$, respectively. In particular, the following terms are added to the equations of motion,
 \begin{align}
-    \left(\frac{d\varpi_1 }{d\tau}\right)_{\rm ext} = \pi_1, \\
-    \left(\frac{d\varpi_2 }{d\tau}\right)_{\rm ext} = \pi_2.
+    \left(\frac{d\varpi_1 }{dt}\right)_{\rm ext} = \frac{\omega_{1e}}{2\pi}, \\
+    \left(\frac{d\varpi_2 }{dt}\right)_{\rm ext} = \frac{\omega_{2e}}{2\pi}.
 \end{align}
 
-\subsubsection{$\pi_1-\pi_2<0$}
+\subsubsection{$\omega_{1e}-\omega_{2e}<0$}
 See Figure~\ref{fig:cm-neg-dDpom}.
 
-\subsubsection{$\pi_1-\pi_2>0$}
+\subsubsection{$\omega_{1e}-\omega_{2e}>0$}
 See Figure~\ref{fig:cm-pos-dDpom}.
 
 
