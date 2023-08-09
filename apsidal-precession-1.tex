@@ -48,7 +48,7 @@
     An orbiter in a potential with a nonzero quadrupole moment will undergo apsidal precession. 
     Common astrophysical scenarios with a nonzero quadrupole include a planet being perturbed secularly by a disk or another planet as well as a planet orbiting an oblate star (with a $J_2$ moment). 
     In the case of a disk, a planet's longitude of perihelion $\varpi$ will precess at a rate
-    \begin{equation}
+    \begin{equation}\label{eq:diskprecscaling}
         \frac{\dot\varpi}{n} \simeq 0.0004\left(\frac{a}{1~\rm{au}}\right)^3\left(\frac{M_d/M}{0.1}\right)\left(\frac{3~\rm{au}}{r_{\rm in}}\right)^2\left(\frac{10~\rm{au}}{r_{\rm out}}\right)
 %= \frac34 \frac{n}{M}\int_{r_{\rm in}}^{r_{\rm out}} \Sigma(r_d)\left(\frac{a}{r_d}\right)^3 dm_d
     \end{equation}
@@ -70,7 +70,7 @@ The Hamiltonian of the system is
 \begin{align}
     \label{eq:TPH}
     \mathcal H=&-\frac{GM}{2a}
-    +\frac{GMm_p}{a_p}\left\{
+    -\frac{GMm_p}{a_p}\left\{
         f_1e\cos((j+1)\tau-j\lambda-\varpi)\right.\\
         &\left. +f_2e_p\cos((j+1)\tau-j\lambda-\varpi_p)
     \right\}.\nonumber
@@ -82,6 +82,11 @@ The resonant arguments are
 \end{align}
 where $\tau=n_p t$ is the dimensionless time. For a nominal choice of $a_p=1~\rm{au}$, $n_p = 2\pi~\mathrm{rad}/\mathrm{yr}$.
 
+\begin{figure*}
+    \includegraphics[width=0.45\textwidth]{internal-lowep-grid.png}
+    \includegraphics[width=0.45\textwidth]{internal-grid.png}
+\end{figure*}
+
 \subsection{Dissipation}
 We add dissipation to the system as
 \begin{align}
@@ -90,33 +95,58 @@ We add dissipation to the system as
 \end{align}
 where $T_e$ and $T_m$ are the test particle's eccentricity- and SMA-damping timescales, respectively. Since the test particle is inside the orbit of $m_p$, we set $T_m<0$ and let the test particle migrate outwards.
 
+A typical capture outcome for $e_p=0.01$ is plotted in Figure~\ref{fig:tp_0.01_0.0_0.0.png} and for $e_p=0.03$ in Figure~\ref{fig:tp_0.03_0.0_0.0.png}. These examples demonstrate dynamical states with circulating and aligned apsides, respectively, which were studied in \cite{laune22_apsid_align_anti_align_planet}.
 
 \subsection{Constant Apsidal Precession}
 \label{sec:}
-We add the term $-\omega\Gamma\simeq = -\omega\left(\frac12\sqrt{\alpha}e^2\right)$ to the Hamiltonian \ref{eq:TPH}, which induces the precession term
+We add the term $-\omega\Gamma\simeq = -\omega\left(\frac12\sqrt{\alpha}e^2\right)$ to the Hamiltonian (\ref{eq:TPH}), which induces the precession term
 \begin{equation}
-    \left(\frac{d\varpi}{dt}\right)_{\rm ext} = \frac{\omega}{2\pi}.
+    \left(\frac{d\varpi}{dt}\right)_{\rm ext} = \frac{\omega_{1\rm e}}{2\pi}.
+\end{equation}
+We also set $\varpi_p$ to be time varying (with initial condition $\varpi_p=0$),
+\begin{equation}
+    \left(\frac{d\varpi_p}{dt}\right)_{\rm ext} = \frac{\omega_{2\rm e}}{2\pi}.
 \end{equation}
 
+\subsection{Secular Terms}
+
 \subsection{Reducing the Hamiltonian}
-Through a series of canonical transformations and approximations, the Hamiltonian \ref{eq:TPH} (including the apsidal precession terms) can be reduced to 
+Through a series of canonical transformations and approximations, the Hamiltonian (\ref{eq:TPH}) (including the apsidal precession terms) can be reduced to 
+
 \begin{align}
-    \mathcal H(M,R) \simeq& - \frac{3 M^{2} j^{\frac{2}{3}} \left(j + 1\right)^{\frac{4}{3}}}{2} + \frac{M \omega_{{\rm e}2}}{\mu^{\frac{2}{3}}} 
-    - \frac{R \left( \omega_{{\rm e}1} - \omega_{{\rm e}2}\right)}{\mu^{\frac{2}{3}}}
-    \nonumber\\
-    &+ \sqrt{2} \sqrt{R} \left(f_{1} \cos{\left(m + r \right)}
-        +\frac{e_{p} f_{2} \left(\omega_{{\rm e}1} - \omega_{{\rm e}2}\right) \cos{\left(r \right)}}{f_{1} \mu}\right)
+    \mathcal H
+    &=- \frac{3 \Theta_{0}^{2} j^{\frac{2}{3}} \left(j + 1\right)^{\frac{4}{3}}}{2}\nonumber\\
+    &-\sqrt{2\Phi} \left(f_{1} \mu_{p} \cos{\left(\phi - \theta_{0} \right)}-\frac{ e_{p} f_{2} \left(\omega_{1\rm e} - \omega_{2\rm e}\right) \cos{\left(\phi \right)}}{f_{1}}\right) \nonumber\\
+    &+\Theta_{0} \omega_{2\rm e}- \Phi \left(\omega_{1\rm e} - \omega_{2\rm e}\right) 
 \end{align}
-where the new canonical momentum-coordinate pairs are
+where the canonically conjugate coordinate--momentum pairs are
 \begin{align}
-    R =& \frac{\sqrt{\alpha} e^{2} f_{1}^{2} - 2 \sqrt[4]{\alpha} e e_{p} f_{1} f_{2} \cos{\left(\omega_{{\rm e}2} \tau - \varpi \right)} + e_{p}^{2} f_{2}^{2}}{2 f_{1}^{2} \mu^{\frac{2}{3}}}\\
-    &\leftrightarrow r = \mathrm{atan}\frac{e \sin{\left(g_{1} \right)}}{ \frac{e_{p} f_{2}}{f_{1} \sqrt[4]{a}}- e \cos{\left(g_{1} \right)}},\\
-    M=&\frac{\sqrt{\alpha}- (j/(j+1))^{1/3} }{j \mu^{\frac{2}{3}}}
-    \leftrightarrow m =  j l - \tau \left(j + 1\right),
+    \phi &= \operatorname{acot}{\left(\frac{\cos{\left(\omega_{2\rm e} \tau - \varpi \right)}}{\sin{\left(\omega_{2\rm e} \tau - \varpi \right)}} - \frac{e_{p} f_{2}}{\sqrt[4]{\alpha} e f_{1} \sin{\left(\omega_{2\rm e} \tau - \varpi \right)}} \right)}\\
+    &\longleftrightarrow\Phi = \frac{\sqrt{\alpha} e^{2}}{2} + \frac{\sqrt[4]{\alpha} e e_{p} f_{2} \cos{\left(\omega_{2\rm e} \tau - \varpi \right)}}{f_{1}}  + \frac{e_{p}^{2} f_{2}^{2}}{2 f_{1}^{2}}\\
+    \theta_{0} &= j \lambda - \tau \left(j + 1\right)\\
+    &\longleftrightarrow\Theta_{0} = \frac{\sqrt{\alpha}}{j} - \frac{1}{j^{\frac{2}{3}} \sqrt[3]{j + 1}}
 \end{align}
-and the momenta are now $M\sim R \sim\mathcal O(1)$.
+
+We rescale $\Phi/\mu_p^{2/3}=R$, $\Theta_0/\mu_p^{2/3}=Q$, $\mathcal H/\mu_p^{4/3}=H$ and $\mu_p^{2/3}t=t_0$.
+We define the parameter
+\begin{equation}
+    K=\frac{(\omega_{\rm 2e}-\omega_{\rm 1e})}{\mu_p}
+\end{equation}
+The Hamiltonian is now
+\begin{align}\label{eq:order1H}
+    H &= -\frac32 j^\frac23(j+1)^\frac43Q^2+\frac{\omega_{2\rm e}}{\mu_p^\frac23} Q - \frac{\omega_{\rm 1e}-\omega_{\rm 2e}}{\mu_p^\frac23}R\nonumber\\
+    & -\sqrt{2R}\left(f_1\cos(\phi-\theta_0)+\frac{f_2}{f_1}K\cos(\phi)\right)
+\end{align}
+The equations of motion are 
+\begin{align}
+\dot Q&=- \sqrt{2R} f_{1} \sin{\left(\phi - \theta_{0} \right)}\\
+\dot R&=- \sqrt{2R} \left(-\frac{f_2}{f_1}K\sin\phi - f_{1} \sin{\left(\phi - \theta_{0} \right)}\right)\\
+\dot\theta_0&=- 3 Q j^{\frac{2}{3}} \left(j + 1\right)^{\frac{4}{3}} + \frac{\omega_{\mathrm{2e}}}{\mu_{p}^{\frac{2}{3}}}\\
+\dot\phi&=- \frac{\omega_{\mathrm{1e}} - \omega_{\mathrm{2e}}}{\mu_{p}^{\frac{2}{3}}} - \frac{\left( \frac{f_2}{f_1}K\cos(\phi)+ f_{1} \cos{\left(\phi - \theta_{0} \right)}\right)}{ \sqrt{2R}}
+\end{align}
 
 
+\clearpage
 \section{Coplanar Comparable Mass Problem}
 The \emph{Coplanar Comparable Mass Problem} (CCMP) is the problem of two coplanar comparable mass (mass ratio $q=m_1/m_2\sim\mathcal O(1)$) near a $p:q$ MMR.
 
@@ -134,7 +164,7 @@ The Hamiltonian of the system is
     \mathcal H=
     &- \frac{G M m_{2}}{2 a_{2}} - \frac{G M m_{2} q}{2 a_{1}} \\
     &- \frac{G m_{2}^{2} q}{a_{2}} \left(e_{1} f_{1} \cos{\theta_1} + e_{2} f_{2} \cos{\theta_2}\right) \\
-    &- \frac{G m_{2}^{2} q \left(e_{1} e_{2} f_{4} \cos{\left(g_{1} - g_{2} \right)} + f_{3} \left(e_{1}^{2} + e_{2}^{2}\right)\right)}{a_{2}},
+    &- \frac{G m_{2}^{2} q}{a_{2}} \left(e_{1} e_{2} f_{4} \cos{\left(g_{1} - g_{2} \right)} + f_{3} \left(e_{1}^{2} + e_{2}^{2}\right)\right),
 \end{align}
 where the two resonant arguments are
 \begin{align}
@@ -189,7 +219,7 @@ A typical capture scenario for is demonstrated in Figure~\ref{fig:cm-control}.
 
 \begin{figure}
     \includegraphics[width=0.4\textwidth]{cm_1e-4_2e-4.png}
-    \caption{The same as Figure~\ref{fig:cm-control} but with $\omega_{1\rm e}=10^{-4}$ and $\omega_{2\rm e}=2\times10^{-4}$ ($\Delta\dot\varpi_{\rm ext}=\omega_{1\rm e}-\omega_{2\rm e}=-10^{-4}>0$). After around 4.5~Myr, $\theta_2$ begins circulating and eccentricities increase to orbit-crossing values (resulting in instability).}
+    \caption{The same as Figure~\ref{fig:cm-control} but with $\omega_{1\rm e}=10^{-4}$ and $\omega_{2\rm e}=2\times10^{-4}$ ($\Delta\dot\varpi_{\rm ext}=\omega_{1\rm e}-\omega_{2\rm e}=-10^{-4}<0$). After around 4.5~Myr, $\theta_2$ begins circulating and eccentricities increase to orbit-crossing values (resulting in instability).}
     \label{fig:cm-neg-dDpom}
 \end{figure}
 
@@ -206,11 +236,13 @@ We add the terms $-\Gamma_1\omega_{1\rm e}-\Gamma_2\omega_{2\rm e}$ to the Hamil
     \left(\frac{d\varpi_1 }{dt}\right)_{\rm ext} = \frac{\omega_{1e}}{2\pi}, \\
     \left(\frac{d\varpi_2 }{dt}\right)_{\rm ext} = \frac{\omega_{2e}}{2\pi}.
 \end{align}
+We define the parameter $\Delta\dot\varpi_{\rm ext} = \omega_{1\rm e}-\omega_{2\rm e}$.
+We use the simplifying assumption of constant $\omega_{i\rm e}$'s, whereas in reality, one expects the apsidal precession frequencies to change with the mean motions $n_i$ (see equation \ref{eq:diskprecscaling}).
 
-\subsubsection{$\omega_{1e}-\omega_{2e}<0$}
+\subsubsection{$\Delta\dot\varpi_{\rm ext}<0$}
 See Figure~\ref{fig:cm-neg-dDpom}.
 
-\subsubsection{$\omega_{1e}-\omega_{2e}>0$}
+\subsubsection{$\Delta\dot\varpi_{\rm ext}>0$}
 See Figure~\ref{fig:cm-pos-dDpom}.
 
 
