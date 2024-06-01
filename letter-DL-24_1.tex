@@ -1,0 +1,227 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{natbib}
+\bibliographystyle{unsrtnat}
+
+\title{MMR Sub-resonances and Apsidal Precession}
+\author{JT Laune}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+An orbiter in a potential with a nonzero quadrupole moment will undergo apsidal precession. 
+Common astrophysical scenarios with a nonzero quadrupole include a planet being perturbed secularly by a disk or another planet as well as a planet orbiting an oblate star (with a $J_2$ moment). 
+In the case of a disk, a planet's longitude of perihelion $\varpi$ will precess at a rate
+\begin{equation}\label{eq:diskprecscaling}
+    \frac{\dot\varpi}{n} \simeq 0.0004\left(\frac{a}{1~\rm{au}}\right)^3\left(\frac{M_d/M}{0.1}\right)\left(\frac{3~\rm{au}}{r_{\rm in}}\right)^2\left(\frac{10~\rm{au}}{r_{\rm out}}\right)
+%= \frac34 \frac{n}{M}\int_{r_{\rm in}}^{r_{\rm out}} \Sigma(r_d)\left(\frac{a}{r_d}\right)^3 dm_d
+\end{equation}
+for a star of mass $M$, a disk of mass $M_d$ extending from $r_{\rm in}$ to $r_{\rm out}$ ($\gg r_{\rm in}$), and planet at semimajor axis (SMA) $a$ and mean motion $n$.
+Apsidal precession affects MMR angles of the form $\theta_i=(j+1)\lambda_2-j\lambda_2-\varpi_i$ by adding a precession term $\dot\varpi_i$.
+
+Here we investigate the MMR capture of a test particle by a planet and then demonstrate the feasibility of precession-induced resonance overlap disrupting capture in the comparable mass problem.
+
+\section{One Planet and a Test Particle}\label{sec:tp}
+\subsection{Hamiltonian in Orbital Elements}
+Consider a test particle outside of a planet of mass $m_p$.
+The subscript $p$ denotes the planet $m_p$'s orbital elements.
+Let the secular precession frequency of the test particle's longitude of perihelion be $\omega$ and the planet's $\omega_p$.
+Suppose that $\varpi_p=0$ at $t=0$.
+We'll work in angular time, $\tau = n_pt$, where $t$ is physical time.
+
+The Hamiltonian in orbital elements is
+\begin{equation}
+    \label{eq:TPH}
+    \mathcal H=-\frac{GM}{2a}
+    -\frac{GMm_p}{a_p}\left(
+    f_1e_p\cos(\theta_0 - \omega_p\tau)
+    +f_2e\cos(\theta_0 - \varpi)
+    \right)
+    + \frac12\sqrt{a}e^2\omega.
+\end{equation}
+where
+\begin{equation}
+    \theta_0    =(j+1)\lambda -j\tau
+\end{equation}
+and $f_1$, $f_2$ are constants.
+
+\subsection{Dissipation}
+We add dissipative terms
+\begin{align}
+    \frac{\dot e}{e} & = - \frac{1}{T_e},                   \\
+    \frac{\dot a}{a} & = -\frac{1}{T_m} - \frac{2e^2}{T_e}. \\
+\end{align}
+
+\subsection{Hamiltonian in Canonical Variables}
+Scaled by $n_p=\sqrt{GM/a_p^3}$ and expressed in the canonical variables
+\begin{align}
+    \Theta=\frac{\sqrt{a/a_p}}{j+1}           & \longleftrightarrow \theta_0 \\
+    \Gamma\simeq\frac12\sqrt\frac{a}{a_p} e^2 & \longleftrightarrow -\varpi, \\
+\end{align}
+the Hamiltonian is
+\begin{equation}
+    \mathcal H =
+    - \frac{1}{2 \Theta^{2} \left(j + 1\right)^{2}}
+    - \Theta j - \omega\Gamma
+    - e_{p} f_{1} \mu_{p} \cos{\left(\theta_0-\omega_{p} \tau \right)}
+    - f_{2} \mu_{p} \sqrt{\frac{2\Gamma}{(j + 1)\Theta}} \cos(\theta_0 -\varpi).
+\end{equation}
+
+%It's often useful to work in the Canonical cartesian coordinates, which we'll denote by
+%\begin{equation}
+%    X=\sqrt{2\Gamma}\sin(-\varpi) \longleftrightarrow Y=\sqrt{2\Gamma}\cos(-\varpi).
+%\end{equation}
+
+\subsection{The $\theta_0-\omega_p \tau$ resonance}
+Let's first consider the $\theta_0-\omega_p\tau$ resonance in isolation, i.e. consider $f_2=0$.
+
+Two canonical transformations bring us to the following Hamiltonian,
+\begin{align}
+    \mathcal H_1 = -\frac{1}{2(j+1)^2(\Theta_1-\Theta_c)^2} - j(\Theta_1-\Theta_c) - \omega_p(\Theta_1-\Theta_c) - e_pf_1\mu_p\cos\theta_1
+\end{align}
+with canonical variables
+\begin{align}
+    \Theta_1 = \Theta-\Theta_c \longleftrightarrow \theta_1=\theta_0-\omega_p\tau,
+\end{align}
+where $\Theta_c$ is the critical value of $\Theta$ such that
+\begin{align}
+    \dot\theta_1 & = \left(\frac{\partial\mathcal H_1}{\partial\Theta_1}\right|_{\Theta_1=0} = 0.
+    %\Rightarrow \Theta_c & = \frac{1}{(j+1)^{2/3}(j+\omega_p)^{1/3}}
+\end{align}
+Near resonance, $\Theta_1/\Theta_c\ll 1$ and we can expand the Hamiltonian and drop constant terms,
+\begin{align}
+    \mathcal H_1 & \approx -\frac{1}{2(j+1)^2\Theta_c^2}\left(1-\frac{2\Theta_1}{\Theta_c}+\frac{3\Theta_1^2}{\Theta_c^2}\right)
+    +j\Theta_c-j\Theta_1 +\omega_p\Theta_c - \omega_p\Theta_1 - e_pf_1\mu_p\cos\theta_1                                          \\
+                 & \simeq -\frac{3\Theta_1^2}{2(j+1)^2\Theta_c^4} - e_pf_1\mu_p\cos\theta_1
+\end{align}
+The resonance width is the width of the separatrix through the points $(\Theta_1=0,\theta_1=\pm\pi/2)$,
+\begin{equation}\label{eq:d1}
+    \delta_1 = \frac{\delta n}{n_0} = \frac32\frac{\delta a}{a_0} = \frac{6}{(j+1)^{2/3}(j-\omega_p)^{1/3}}\sqrt{\frac23 e_p |f_1| \mu_p},
+\end{equation}
+where $a_0=((j+1)/(j-\omega_p))^{2/3}a_p$ and $n_0=a_0^{3/2}$.
+
+\subsection{The $\theta_0-\varpi$ resonance}
+Now we consider the $\theta_0-\varpi$ resonance in isolation, i.e. consider $f_1=0$.
+
+A canonical transformation brings us to the Hamiltonian
+\begin{equation}
+    \mathcal H_2 =
+    - \frac{3 \Gamma_{2}^{2}}{2 \Theta_{2}^{4} \left(j + 1\right)^{2}}
+    + \Gamma_{2} \left(\frac{1}{\Theta_{2}^{3} \left(j + 1\right)^{2}}-j\right)
+    - \frac{\sqrt{2} \sqrt{\Gamma_{2}} f_{2} \mu_{p} \cos{\left(\gamma_{2} \right)}}{\sqrt{j + 1}}
+\end{equation}
+with canonical variables
+\begin{align}
+    \Gamma_2 = \Gamma=\frac12\sqrt ae^2                                     & \longleftrightarrow \gamma_2 = \theta_0 -\varpi \\
+    \Theta_2 = \Theta - \Gamma_2 = \frac{\sqrt a}{j+1} - \frac12\sqrt a e^2 & \longleftrightarrow \theta_0.
+\end{align}
+Since $\theta_0$ is not in the transformed Hamiltonian, $\Theta_2$ is a constant of motion.
+
+The coefficient of the middle term is zero at exact resonance.
+The scale of resonance is set by the first and third terms being equal,
+\begin{equation}
+    e_0^2 \sim\frac{1}{\sqrt{a_0}(j+1)^{5/3}} \left(\frac83 a_0^2|f_2|\mu_p\right)^{2/3}
+\end{equation}
+The conserved quantity, $\Theta_2$, sets the width,
+\begin{equation}\label{eq:d2}
+    \delta_2 = \frac{\delta n}{n_0} = \frac32\frac{\delta a}{a_0} \sim 3(j+1)e_0^2
+    = \frac{3}{\sqrt{a_0}(j+1)^{2/3}}\left(\frac83 a_0^2 |f_2|\mu_p\right)^{2/3}
+\end{equation}
+
+\subsection{Dissipative capture for $\omega_p>0$}
+We set $\omega=0$ and choose a value for $\omega_p$ and $e_p$.
+To test capture, we set $T_e=10^{3} (2\pi/n_p)$ and $T_m=10^{6} (2\pi/n_p)$, start the test particle at $a=1.4 a_p$, and integrate for $T=10^6(2\pi/n_p)$.
+We plot the capture outcome (black for capture, red for escape) in the range $\omega_p/n_p \in [-10^{-2},10^{-2}]$, $e_p\in [0.0,0.03]$ in Figure~\ref{fig:grid}.
+The resonance widths $\delta_1$ and $\delta_2$ are plotted for reference.
+Roughly, capture is interrupted for $e_p>0.01$ and $5\times10^{6}\lesssim|\omega_p|\lesssim\delta_1$
+
+In Figure~\ref{fig:ex1}, we give examples of capture and non-capture for the eccentricity $e_p=0.02$ (plotted in yellow in Figure~\ref{fig:grid}).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{Figure 34.png}
+    \caption{Capture outcomes for $\omega_p/n_p$ and $e_p$. Red squares indicate escape; black squares indicate capture. Yellow squares are the examples presented in Figure~\ref{fig:ex1}. The resonance widths $\delta_1$ (equation~\ref{eq:d1}) and $\delta_2$ (equation~\ref{eq:d2}) are plotted in magenta an cyan, respectively.}
+    \label{fig:grid}
+\end{figure}
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.3\textwidth]{Figure 50.png}
+    \includegraphics[width=0.3\textwidth]{Figure 53.png}
+    \includegraphics[width=0.3\textwidth]{Figure 57.png}
+    \caption{
+        \textit{Left:} Capture for $\omega_p/n_p=2.68\times10^{-6}$. The precession frequency is not large enough for resonance interference.
+        \textit{Middle:} Escape for $\omega_p/n_p=1.39\times10^{-4}$. Eccentricity is excited near resonance but then the planet passes through the resonance.
+        \textit{Right:} Capture for $\omega_p/n_p =3.73\times10^{-3}$. The precession frequency is large enough so that the resonances are well separated.
+    }
+    \label{fig:ex1}
+\end{figure*}
+
+\subsection{Reducing rotation}
+The canonical transformation which combines the $e_p$ and $e$ terms in equation~(\ref{eq:TPH}) presented in \citet{wisdom_canonical_1986} \citep[c.f.][]{moutamid14_coupl_between_corot_lindb_reson,laune22_apsid_align_anti_align_planet} is also applicable in the apsidally precessing case.
+Through a similar series of canonical transformations,
+\begin{align}
+    \mathcal H_3
+     & =- \frac{3 \Theta_{0}^{2} j^{\frac{2}{3}} \left(j + 1\right)^{\frac{4}{3}}}{2}\nonumber                                                                                   \\
+     & -\sqrt{2\Phi} \left(f_{2} \mu_{p} \cos{\left(\phi - \theta_{0} \right)}+\frac{ e_{p} f_{1} \left(\omega_p-\omega\right) \cos{\left(\phi \right)}}{f_{1}}\right) \nonumber \\
+     & +\Theta_{0} \omega- \Phi \left(\omega_p - \omega\right)
+\end{align}
+where the canonically conjugate coordinate--momentum pairs are
+\begin{align}
+    \phi       & = \operatorname{acot}{\left(\frac{\cos{\left(\varpi-\omega_p \tau \right)}}{\sin{\left(\varpi-\omega_p \tau  \right)}} - \frac{e_{p} f_{1}}{\sqrt[4]{\alpha} e f_{2} \sin{\left(\varpi-\omega_p \tau  \right)}} \right)} \\
+               & \longleftrightarrow\Phi = \frac{\sqrt{\alpha} e^{2}}{2} + \frac{\sqrt[4]{\alpha} e e_{p} f_{1} \cos{\left(\omega_p \tau - \varpi \right)}}{f_{2}}  + \frac{e_{p}^{2} f_{1}^{2}}{2 f_{2}^{2}}                             \\
+    \theta_{0} & = (j+1) \lambda - j\tau                                                                                                                                                                                                  \\
+               & \longleftrightarrow\Theta_{0} = \frac{\sqrt{\alpha}}{j+1} - \frac{1}{(j+1)^{\frac{2}{3}} \sqrt[3]{j}}.
+\end{align}
+We see that in the case $\omega_p=\omega$, the Hamiltonian reduces to a single critical argument just as in the non-precessing case (with a slight shift of the term $\omega\Theta_0$).
+
+\section{Two Planets}
+\subsection{Hamiltonian in Orbital Elements}
+Denote the inner planet's orbital elements with a subscript of $1$ and the outer planet's orbital elements with a subscript of $2$.
+Let $q=m_1/m_2$ be the mass ratio.
+Let $\omega_1$ and $\omega_2$ be the apsidal precession rates of the two planets.
+The Hamiltonian is
+\begin{equation}
+    \mathcal H=
+    - \frac{G M m_{1}}{2 a_{1}}
+    - \frac{G M m_{2}}{2 a_{2}}
+    - \frac{G m_{1}m_2}{a_{2}} \left(e_{1} f_{1} \cos(\theta_0 - \varpi_1) + e_{2} f_{2} \cos(\theta_0-\varpi_2)\right)
+    - \frac12\sqrt{\alpha_1}e_1^2\omega_1
+    - \frac12\sqrt{\alpha_2}e_2^2\omega_2,
+\end{equation}
+where $\theta_0 = (j+1)\lambda_2-j\lambda$.
+
+\subsection{Dissipation}
+We add dissipation to the system with the terms
+\begin{align}
+    \frac{da_1}{dt} & =- \frac{a_{1}}{T_{m,1}} - \frac{2 a_{1} e_{1}^{2}}{T_{e,1}}, \\
+    \frac{da_2}{dt} & =- \frac{a_{2}}{T_{m,2}} - \frac{2 a_{2} e_{2}^{2}}{T_{e,2}}, \\
+    \frac{de_1}{dt} & =- \frac{e_{1}}{T_{e,1}},                                     \\
+    \frac{de_2}{dt} & =- \frac{e_{2}}{T_{e,2}}.
+\end{align}
+
+\subsection{Dissipative capture and disruption}
+We set $m_1=3\times10^{-6}$ and $m_2=6\times 10^{-6}$ ($q=1/2$).
+We set $T_{m,1}=\infty$, $T_{m_2} = 10^{7}(2\pi/n_{1,0})$ and $T_{e,1} = 2\times10^4(2\pi/n_{1,0})$, $T_{e_2} = 10^4(2\pi/n_{1,0})$, where $n_{1,0}$ is the initial mean motion of planet 1.
+We integrate for $T=10^6(2\pi/n_{1,0})$.
+
+From the results of Section~\ref{sec:tp}, we expect resonance overlap and capture disruption around $\omega_2-\omega_1\sim\mu_1^{2/3}n_{1,0}$, i.e. near $\sim 2\times10^{-4}n_{1,0}$.
+In Figure~\ref{fig:cm}, we demonstrate capture in the non-precessing case (left) and escape in the precessing case with $\omega_2-\omega_1=10^{-4}n_{1,0}$ (right).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{cm-control-new.png}
+    \includegraphics[width=0.4\textwidth]{cm-miss.png}
+    \caption{Mean motion resonance encounter for $m_1/M=3\times10^{-6}$ and $m_2/M=6\times10^{-6}$ ($q=1/2$). The two planets are initiated just wide of resonance at a period ratio of $P_2/P_1=1.55$.
+    \textit{Left:} An example of capture in the non-precessing case, $\omega_1=\omega_2=0$. After around $2\times10^5(2\pi/n_{1,0})$, the planets cross the 2:3 MMR and are captured, indicated by the tight libration of $\theta_1$ and $\theta_2$. The periapses transition from being aligned ($\Delta\varpi=\varpi_1-\varpi_2=0^\circ$) to anti-aligned ($\Delta\varpi=\varpi_1-\varpi_2=180^\circ$).
+    \textit{Right:} The same setup but with $\omega_{1\rm e}=10^{-4}$ and $\omega_{2\rm e}=2\times10^{-4}$. The planets are initially caught into resonance around $2\times10^5(2\pi/n_{1,0})$, but then escape resonance around $5\times10^5(2\pi/n_{1,0})$.
+    }
+    \label{fig:cm}
+\end{figure}
+
+\clearpage
+\bibliography{bibliography}
+
+\end{document}
