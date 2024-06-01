@@ -8,3 +8,9 @@
 *.pdf
 *.synctex.gz
 *.code-workspace
+*.png
+*.pkl
+.DS_Store
+.ipynb_checkpoints
+__pycache__
+results
