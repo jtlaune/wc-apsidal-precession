@@ -38,22 +38,11 @@ def solve_ivp(job):
             * n ** (1 / 3)
             * n_p ** (2 / 3)
             * npy.sin(theta_p)
-            + 0.000200052297512438
-            * e_p
-            * n ** (5 / 3)
-            * npy.sin(omega_p * t - varpi)
-            / n_p ** (2 / 3)
             - 0.000189565074126955
             * n ** (1 / 3)
             * n_p ** (2 / 3)
             * npy.sin(omega_p * t + theta_p - varpi),
-            0.00023055996000153 * n ** (5 / 3) / n_p ** (2 / 3)
-            + omega
-            - 0.000200052297512438
-            * e_p
-            * n ** (5 / 3)
-            * npy.cos(omega_p * t - varpi)
-            / (e * n_p ** (2 / 3))
+            omega
             + 0.000189565074126955
             * n ** (1 / 3)
             * n_p ** (2 / 3)
@@ -103,7 +92,7 @@ def solve_ivp(job):
 
 alpha0val = (2 / 3) ** (2.0 / 3)
 
-N_jobs = 1e4 
+N_jobs = 10000
 
 # Uniform in epvals
 epvals = npy.random.default_rng(seed=182).uniform(5e-3, 0.1, N_jobs)
@@ -124,6 +113,6 @@ for i in range(N_jobs):
 executors_solve_ivp = get_reusable_executor(max_workers=60)
 results = list(executors_solve_ivp.map(solve_ivp, jobs))
 with open(
-    f"results_mup1e-4_tm2pi1e6_n1.55_omalpha0val3.5_random{N_jobs}.pkl", "wb"
+    f"results_mup1e-4_tm2pi1e6_n1.55_omalpha0val3.5_random{N_jobs}_nosec.pkl", "wb"
 ) as f:
     pickle.dump([jobs, results], f)
