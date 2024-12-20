@@ -10,12 +10,13 @@ if N_JOBS % BATCH_SIZE != 0:
     raise Warning("BATCH_SIZE must divide N_JOBS.")
 
 def solve_ivp(job):
-    ind, e_p, omega_p, omega, thetap0 = (
+    ind, e_p, omega_p, omega, thetap0, varpi0 = (
         job[0],
         job[1],
         job[2],
         job[3],
         job[4],
+        job[5],
     )
     
     funcl = lambda n,e,varpi,theta_p,n_p,t: ([0.000853042833571296*e*n**(4/3)*n_p**(2/3)*npy.sin(omega_p*t + theta_p - varpi) - 0.000695490377254464*e_p*n**(4/3)*n_p**(2/3)*npy.sin(theta_p), 0.000142173805595216*e**2*n**(1/3)*n_p**(2/3)*npy.sin(omega_p*t + theta_p - varpi) - 0.000115915062875744*e*e_p*n**(1/3)*n_p**(2/3)*npy.sin(theta_p) + 0.00013107133427436*e_p*n**(5/3)*npy.sin(omega_p*t - varpi)/n_p**(2/3) - 9.47825370634774e-5*n**(1/3)*n_p**(2/3)*npy.sin(omega_p*t + theta_p - varpi), 0.000151059507755789*n**(5/3)/n_p**(2/3) + omega - 0.00013107133427436*e_p*n**(5/3)*npy.cos(omega_p*t - varpi)/(e*n_p**(2/3)) + 9.47825370634774e-5*n**(1/3)*n_p**(2/3)*npy.cos(omega_p*t + theta_p - varpi)/e, 0.000142173805595216*e*n**(1/3)*n_p**(2/3)*npy.cos(omega_p*t + theta_p - varpi) + 3*n - 2*n_p - omega_p])
@@ -35,7 +36,7 @@ def solve_ivp(job):
         func,
         [teval[0], teval[-1]],
         # ICs: n, e, varpi, theta_p
-        [1 / 1.55, 0.001, 0, thetap0],
+        [1 / 1.55, 0.001, varpi0, thetap0],
         t_eval=teval,
         rtol=1e-9,
         ###################################################
@@ -53,21 +54,35 @@ def solve_ivp(job):
 
 alpha0val = (2 / 3) ** (2.0 / 3)
 
-# Uniform in epvals
-epvals = npy.random.default_rng(seed=49872).uniform(5e-3, 0.1, N_JOBS)
+SEED_1 = 1822
+SEED_2 = 8695
+SEED_3 = 5687
+SEED_4 = 6326
 
+# Uniform in epvals
+epvals = npy.random.default_rng(seed=SEED_1).uniform(5e-3, 0.1, N_JOBS)
 # Log uniform in ompvals
 ompvals = npy.power(
-    10, npy.random.default_rng(seed=2428).uniform(npy.log10(5e-6), -3, N_JOBS)
+    10, npy.random.default_rng(seed=SEED_2).uniform(npy.log10(5e-6), -3, N_JOBS)
 )
-
 # Uniform in thetap0vals
-thetap0vals = npy.random.default_rng(seed=67249).uniform(0, 2 * npy.pi, N_JOBS)
+thetap0vals = npy.random.default_rng(seed=SEED_3).uniform(0, 2 * npy.pi, N_JOBS)
+# Uniform in varpi0vals
+varpi0vals = npy.random.default_rng(seed=SEED_4).uniform(0, 2 * npy.pi, N_JOBS)
 
 jobs = []
 
 for i in range(N_JOBS):
-    jobs += [(i, epvals[i], ompvals[i], ompvals[i] * alpha0val**3.5, thetap0vals[i])]
+    jobs += [
+        (
+            i,
+            epvals[i],
+            ompvals[i],
+            ompvals[i] * alpha0val**3.5,
+            thetap0vals[i],
+            varpi0vals[i],
+        )
+    ]
 
 executors_solve_ivp = get_reusable_executor(max_workers=32)
 results = []
@@ -75,6 +90,6 @@ for ibatch in range(int(N_JOBS/BATCH_SIZE)):
     results = results + list(executors_solve_ivp.map(solve_ivp, jobs[ibatch*BATCH_SIZE:(ibatch+1)*BATCH_SIZE]))
     print(f"Saving i={(ibatch+1)*BATCH_SIZE}")
     with open(
-        f"results_mup5e-5_tm2pi1e6_n1.55_omalpha0val3.5_random{N_JOBS}_nobp.pkl", "wb"
+        f"results_mup5e-5_tm2pi1e6_n1.55_omalpha0val3.5_random{N_JOBS}.pkl", "wb"
     ) as f:
         pickle.dump([jobs, results], f)
