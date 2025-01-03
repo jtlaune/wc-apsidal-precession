@@ -10,3 +10,8 @@
 *.code-workspace
 *.pkl
 *.pyc
+*.png
+.DS_Store
+.ipynb_checkpoints
+__pycache__
+results
