@@ -16,7 +16,8 @@ PARAMS["q"] = PARAMS["mu1"] / PARAMS["mu2"]
 PARAMS["Te20"] = PARAMS["Tm2"] * PARAMS["h"] ** 2
 PARAMS["Te10"] = PARAMS["Te20"] / PARAMS["q"]
 
-SEED = 3330
+SEED1, SEED2, SEED3, SEED4, SEED5 = 439, 273, 590, 848, 55
+
 N_JOBS = 1000
 BATCH_SIZE = 100
 if N_JOBS % BATCH_SIZE != 0:
@@ -32,117 +33,117 @@ def solve_ivp(job):
         job[4],
         job[5],
     )
-    funcl = lambda _Dummy_73, _Dummy_74, _Dummy_75, _Dummy_76, _Dummy_77, _Dummy_78, _Dummy_79, _Dummy_80, _Dummy_81, _Dummy_82, _Dummy_83, _Dummy_84, _Dummy_85, _Dummy_86, _Dummy_87: (
+    funcl = lambda _Dummy_49, _Dummy_50, _Dummy_51, _Dummy_52, _Dummy_53, _Dummy_54, _Dummy_55, _Dummy_56, _Dummy_57, _Dummy_58, _Dummy_59, _Dummy_60, _Dummy_61, _Dummy_62, _Dummy_63: (
         [
             5.56392301803571e-5
-            * _Dummy_73 ** (4 / 3)
-            * _Dummy_74 ** (2 / 3)
-            * _Dummy_75
-            * npy.sin(_Dummy_77 - _Dummy_78)
+            * _Dummy_49 ** (4 / 3)
+            * _Dummy_50 ** (2 / 3)
+            * _Dummy_51
+            * npy.sin(_Dummy_53 - _Dummy_54)
             - 6.82434266857037e-5
-            * _Dummy_73 ** (4 / 3)
-            * _Dummy_74 ** (2 / 3)
-            * _Dummy_76
-            * npy.sin(_Dummy_77 - _Dummy_79)
-            + 3 * _Dummy_75**2 * _Dummy_73 / _Dummy_86,
+            * _Dummy_49 ** (4 / 3)
+            * _Dummy_50 ** (2 / 3)
+            * _Dummy_52
+            * npy.sin(_Dummy_53 - _Dummy_55)
+            + 3 * _Dummy_51**2 * _Dummy_49 / _Dummy_62,
             -4.17294226352678e-5
-            * _Dummy_74**2
-            * _Dummy_75
-            * npy.sin(_Dummy_77 - _Dummy_78)
+            * _Dummy_50**2
+            * _Dummy_51
+            * npy.sin(_Dummy_53 - _Dummy_54)
             + 5.11825700142778e-5
-            * _Dummy_74**2
-            * _Dummy_76
-            * npy.sin(_Dummy_77 - _Dummy_79)
-            + 3 * _Dummy_76**2 * _Dummy_74 / _Dummy_87
-            + 2.38732414637843e-8 * _Dummy_74,
+            * _Dummy_50**2
+            * _Dummy_52
+            * npy.sin(_Dummy_53 - _Dummy_55)
+            + 3 * _Dummy_52**2 * _Dummy_50 / _Dummy_63
+            + 2.38732414637843e-8 * _Dummy_50,
             9.27320503005952e-6
-            * _Dummy_73 ** (1 / 3)
-            * _Dummy_74 ** (2 / 3)
-            * _Dummy_75**2
-            * npy.sin(_Dummy_77 - _Dummy_78)
+            * _Dummy_49 ** (1 / 3)
+            * _Dummy_50 ** (2 / 3)
+            * _Dummy_51**2
+            * npy.sin(_Dummy_53 - _Dummy_54)
             - 1.13739044476173e-5
-            * _Dummy_73 ** (1 / 3)
-            * _Dummy_74 ** (2 / 3)
-            * _Dummy_75
-            * _Dummy_76
-            * npy.sin(_Dummy_77 - _Dummy_79)
+            * _Dummy_49 ** (1 / 3)
+            * _Dummy_50 ** (2 / 3)
+            * _Dummy_51
+            * _Dummy_52
+            * npy.sin(_Dummy_53 - _Dummy_55)
             + 9.27320503005952e-6
-            * _Dummy_73 ** (1 / 3)
-            * _Dummy_74 ** (2 / 3)
-            * npy.sin(_Dummy_77 - _Dummy_78)
-            - _Dummy_75 / _Dummy_86
+            * _Dummy_49 ** (1 / 3)
+            * _Dummy_50 ** (2 / 3)
+            * npy.sin(_Dummy_53 - _Dummy_54)
+            - _Dummy_51 / _Dummy_62
             - 1.57285601129232e-5
-            * _Dummy_74 ** (4 / 3)
-            * _Dummy_76
-            * npy.sin(_Dummy_78 - _Dummy_79)
-            / _Dummy_73 ** (1 / 3)
-            - 0.00025
-            * _Dummy_81
-            * _Dummy_83
-            * npy.sin(_Dummy_78)
-            / (_Dummy_73 ** (1 / 3) * _Dummy_80**2),
+            * _Dummy_50 ** (4 / 3)
+            * _Dummy_52
+            * npy.sin(_Dummy_54 - _Dummy_55)
+            / _Dummy_49 ** (1 / 3)
+            - 0.0025
+            * _Dummy_57
+            * _Dummy_59
+            * npy.sin(_Dummy_54)
+            / (_Dummy_49 ** (1 / 3) * _Dummy_56**2),
             -6.95490377254464e-6
-            * _Dummy_74
-            * _Dummy_75
-            * _Dummy_76
-            * npy.sin(_Dummy_77 - _Dummy_78)
+            * _Dummy_50
+            * _Dummy_51
+            * _Dummy_52
+            * npy.sin(_Dummy_53 - _Dummy_54)
             + 8.53042833571296e-6
-            * _Dummy_76**2
-            * _Dummy_74
-            * npy.sin(_Dummy_77 - _Dummy_79)
-            - 5.68695222380864e-6 * _Dummy_74 * npy.sin(_Dummy_77 - _Dummy_79)
-            - _Dummy_76 / _Dummy_87
-            - 0.00025
-            * _Dummy_81
-            * _Dummy_85
-            * npy.sin(_Dummy_79)
-            / (_Dummy_74 ** (1 / 3) * _Dummy_80**2)
+            * _Dummy_52**2
+            * _Dummy_50
+            * npy.sin(_Dummy_53 - _Dummy_55)
+            - 5.68695222380864e-6 * _Dummy_50 * npy.sin(_Dummy_53 - _Dummy_55)
+            - _Dummy_52 / _Dummy_63
+            - 0.0025
+            * _Dummy_57
+            * _Dummy_61
+            * npy.sin(_Dummy_55)
+            / (_Dummy_50 ** (1 / 3) * _Dummy_56**2)
             + 7.86428005646161e-6
-            * _Dummy_74 ** (5 / 3)
-            * _Dummy_75
-            * npy.sin(_Dummy_78 - _Dummy_79)
-            / _Dummy_73 ** (2 / 3),
+            * _Dummy_50 ** (5 / 3)
+            * _Dummy_51
+            * npy.sin(_Dummy_54 - _Dummy_55)
+            / _Dummy_49 ** (2 / 3),
             9.27320503005952e-6
-            * _Dummy_73 ** (1 / 3)
-            * _Dummy_74 ** (2 / 3)
-            * _Dummy_75
-            * npy.cos(_Dummy_77 - _Dummy_78)
-            - 2 * _Dummy_73
+            * _Dummy_49 ** (1 / 3)
+            * _Dummy_50 ** (2 / 3)
+            * _Dummy_51
+            * npy.cos(_Dummy_53 - _Dummy_54)
+            - 2 * _Dummy_49
             + 8.53042833571296e-6
-            * _Dummy_74
-            * _Dummy_76
-            * npy.cos(_Dummy_77 - _Dummy_79)
-            + 3 * _Dummy_74,
+            * _Dummy_50
+            * _Dummy_52
+            * npy.cos(_Dummy_53 - _Dummy_55)
+            + 3 * _Dummy_50,
             -9.27320503005952e-6
-            * _Dummy_73 ** (1 / 3)
-            * _Dummy_74 ** (2 / 3)
-            * npy.cos(_Dummy_77 - _Dummy_78)
-            / _Dummy_75
-            + 1.81271409306947e-5 * _Dummy_74 ** (4 / 3) / _Dummy_73 ** (1 / 3)
+            * _Dummy_49 ** (1 / 3)
+            * _Dummy_50 ** (2 / 3)
+            * npy.cos(_Dummy_53 - _Dummy_54)
+            / _Dummy_51
+            + 1.81271409306947e-5 * _Dummy_50 ** (4 / 3) / _Dummy_49 ** (1 / 3)
             - 1.57285601129232e-5
-            * _Dummy_74 ** (4 / 3)
-            * _Dummy_76
-            * npy.cos(_Dummy_78 - _Dummy_79)
-            / (_Dummy_73 ** (1 / 3) * _Dummy_75)
-            + 0.00025 * _Dummy_82 / (_Dummy_73 ** (1 / 3) * _Dummy_80**2)
-            - 0.00025
-            * _Dummy_81
-            * _Dummy_83
-            * npy.cos(_Dummy_78)
-            / (_Dummy_73 ** (1 / 3) * _Dummy_75 * _Dummy_80**2),
-            5.68695222380864e-6 * _Dummy_74 * npy.cos(_Dummy_77 - _Dummy_79) / _Dummy_76
-            + 0.00025 * _Dummy_84 / (_Dummy_74 ** (1 / 3) * _Dummy_80**2)
-            - 0.00025
-            * _Dummy_81
-            * _Dummy_85
-            * npy.cos(_Dummy_79)
-            / (_Dummy_74 ** (1 / 3) * _Dummy_76 * _Dummy_80**2)
+            * _Dummy_50 ** (4 / 3)
+            * _Dummy_52
+            * npy.cos(_Dummy_54 - _Dummy_55)
+            / (_Dummy_49 ** (1 / 3) * _Dummy_51)
+            + 0.0025 * _Dummy_58 / (_Dummy_49 ** (1 / 3) * _Dummy_56**2)
+            - 0.0025
+            * _Dummy_57
+            * _Dummy_59
+            * npy.cos(_Dummy_54)
+            / (_Dummy_49 ** (1 / 3) * _Dummy_51 * _Dummy_56**2),
+            5.68695222380864e-6 * _Dummy_50 * npy.cos(_Dummy_53 - _Dummy_55) / _Dummy_52
+            + 0.0025 * _Dummy_60 / (_Dummy_50 ** (1 / 3) * _Dummy_56**2)
+            - 0.0025
+            * _Dummy_57
+            * _Dummy_61
+            * npy.cos(_Dummy_55)
+            / (_Dummy_50 ** (1 / 3) * _Dummy_52 * _Dummy_56**2)
             - 7.86428005646161e-6
-            * _Dummy_74 ** (5 / 3)
-            * _Dummy_75
-            * npy.cos(_Dummy_78 - _Dummy_79)
-            / (_Dummy_73 ** (2 / 3) * _Dummy_76)
-            + 9.06357046534736e-6 * _Dummy_74 ** (5 / 3) / _Dummy_73 ** (2 / 3),
+            * _Dummy_50 ** (5 / 3)
+            * _Dummy_51
+            * npy.cos(_Dummy_54 - _Dummy_55)
+            / (_Dummy_49 ** (2 / 3) * _Dummy_52)
+            + 9.06357046534736e-6 * _Dummy_50 ** (5 / 3) / _Dummy_49 ** (2 / 3),
         ]
     )
 
@@ -200,11 +201,11 @@ def solve_ivp(job):
     return sol
 
 
-a3s = npy.random.default_rng(seed=SEED).uniform(2, 7, N_JOBS)
-e3s = npy.random.default_rng(seed=SEED).uniform(0.0, 0.3, N_JOBS)
-theta0s = npy.random.default_rng(seed=SEED).uniform(0.0, 2 * npy.pi, N_JOBS)
-varpi10s = npy.random.default_rng(seed=SEED).uniform(0.0, 2 * npy.pi, N_JOBS)
-varpi20s = npy.random.default_rng(seed=SEED).uniform(0.0, 2 * npy.pi, N_JOBS)
+a3s = npy.random.default_rng(seed=SEED1).uniform(2, 7, N_JOBS)
+e3s = npy.random.default_rng(seed=SEED2).uniform(0.0, 0.3, N_JOBS)
+theta0s = npy.random.default_rng(seed=SEED3).uniform(0.0, 2 * npy.pi, N_JOBS)
+varpi10s = npy.random.default_rng(seed=SEED4).uniform(0.0, 2 * npy.pi, N_JOBS)
+varpi20s = npy.random.default_rng(seed=SEED5).uniform(0.0, 2 * npy.pi, N_JOBS)
 
 # npy.power(
 #    10, npy.random.default_rng(seed=SEED).uniform(npy.log10(5e-6), -3, N_JOBS)
@@ -240,6 +241,6 @@ for ibatch in range(int(N_JOBS / BATCH_SIZE)):
         )
     )
     print(f"Saving i={(ibatch+1)*BATCH_SIZE}")
-    with open(f"results_1ME_2ME_random_grid_{N_JOBS}.pkl", "wb") as f:
-        f.write(README.encode()  + b"\n---\n")
+    with open(f"results_1ME_2ME_10MJ_random_grid_{N_JOBS}.pkl", "wb") as f:
+        f.write(README.encode() + b"\n---\n")
         pickle.dump([jobs, results], f)
